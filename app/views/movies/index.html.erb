@@ -5,7 +5,10 @@
 
 <%# Part 1: Filter movies by rating %>
 <%# Part 2: Sort movies by title or release date %>
+<%# Part 3: Remember sorting and filtering settings %>
 <%= form_tag movies_path, method: :get, id: 'ratings_form', local: true do %>
+  <%= hidden_field_tag :home, '1' %>
+
   Include:
   <% @all_ratings.each do |rating| %>
     <div class="form-check form-check-inline">
@@ -42,7 +45,8 @@
         <%= link_to "Title",
             movies_path(
               sort_by: "title",
-              ratings: @ratings_to_show.index_with { '1' }
+              ratings: @ratings_to_show.index_with { '1' },
+              home: 1
             ) %>
       </th>
 
@@ -53,7 +57,8 @@
         <%= link_to "Release Date",
             movies_path(
               sort_by: "release_date",
-              ratings: @ratings_to_show.index_with { '1' }
+              ratings: @ratings_to_show.index_with { '1' },
+              home: 1
             ) %>
       </th>
 
