@@ -1,3 +1,12 @@
+
+<!-- This file is app/views/movies/index.html.erb -->
+<p style="color: green"><%= notice %></p>
+
+<%# Part 2: Start here... %>
+
+<h1>Movies</h1>
+
+<%# Part 1: Filter movies by rating %>
 <%= form_tag movies_path, method: :get, id: 'ratings_form', local: true do %>
   Include:
   <% @all_ratings.each do |rating| %>
@@ -16,3 +25,14 @@
       id: 'ratings_submit',
       class: 'btn btn-primary' %>
 <% end %>
+
+<div id="movies">
+  <% @movies.each do |movie| %>
+    <%= render movie %>
+    <p>
+      <%= link_to "Show this movie", movie %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New movie", new_movie_path %>
