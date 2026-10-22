@@ -11,9 +11,11 @@ def index
                        @all_ratings
                      end
 
-  @movies = Movie.with_ratings(@ratings_to_show)
-end
+  @sort_by = %w[title release_date].include?(params[:sort_by]) ?
+               params[:sort_by] : 'title'
 
+  @movies = Movie.with_ratings(@ratings_to_show).order(@sort_by)
+end
   # GET /movies/1 or /movies/1.json
   def show
   end
